@@ -16,13 +16,15 @@ const Privacy_policy_component = () => {
         .then(function(doc) {
             if(doc.exists) {
                 setUserData(doc.data());
+                fetch(`https://legalsoft.netlify.app/privacy/${id.id}`)
             } else {
                 console.log('No data exist')
             }
         }).catch(function(error){
             console.log('error occured: ' + error);
         })
-    },[userData,id.id]);
+        
+    },userData);
     //CcqSfc45pX4k3pVjeT22
     
     if(userData === null)
