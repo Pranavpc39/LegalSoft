@@ -104,7 +104,7 @@ class Form extends Component {
                                             }).catch(function(error) {
                                                 console.log("Error getting document:", error);
                                             });
-                                            alert("Added");
+                                            
                                       });
                                 
                             })
@@ -125,6 +125,10 @@ class Form extends Component {
             alert("Upload App Logo");
         }
 
+        const {history} = this.props;
+        history.push({pathname:"/clipboard-page",state:{
+            permissions:this.props.location.state.permissions
+        }});
         
     }
 

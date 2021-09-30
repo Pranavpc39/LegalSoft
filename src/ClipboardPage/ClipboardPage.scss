@@ -1,0 +1,25 @@
+.clip-board-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    .clipboard-container{
+        margin-top: 30px;
+        border: 1px solid black;
+        padding: 30px;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+        width: 80vw;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+
+        &:hover{
+            background-color: white;
+            color: black;
+        }
+    }
+}
