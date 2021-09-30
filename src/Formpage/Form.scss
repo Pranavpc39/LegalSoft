@@ -1,0 +1,128 @@
+.form-page{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: grid;
+    place-items: center;
+    .form-container{
+        height: 730px;
+        margin: 30px 30px;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .left{
+            flex: 0.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            .input-box{
+                height: 45px;
+                width: 300px;
+                border-radius: 10px;
+                padding-left: 10px;
+                font-size: medium;
+                margin-bottom: 10px;
+            }
+            .inner-container-wrapper{
+                display: flex;
+                justify-content: center;
+                
+                
+                .form-inner-small-container{
+                    margin: 0px 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid black;
+                    padding: 10px;
+                    border-radius: 10px;
+
+                    .row-container{
+                        display: flex;
+                        justify-content: center;
+                        .checkbox-container{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border: 1px solid black;
+                            padding: 10px 30px;
+                            border-radius: 20px;
+                            margin: 10px 10px;
+                        }
+                    }
+
+                    .checkbox-container1{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid black;
+                        padding: 10px 30px;
+                        border-radius: 20px;
+                        margin: 10px 10px;
+                    }
+                    
+                    
+                }
+            }
+            .next-button{
+                padding: 10px 20px;
+                cursor: pointer;
+                background-color: black;
+                color: white;
+                transition: all 0.5s ease;
+                border-radius: 5px;
+
+                &:hover{
+                    background-color: white;
+                    color: black;
+                    border: 1px solid black;
+                    
+                }
+            }
+            
+        }
+        .right{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 0.5;
+            background-color: #FAF5FF;
+            .form-image{
+                height: 60%;
+                width: 90%;
+                border-radius: 10px;
+            }
+        }
+        
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .form-page{
+        .form-container{
+            .left{
+                flex: 1;
+            }
+            .right{
+                flex: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 650px){
+    .form-page{
+        .form-container{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.per-page{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .top-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5B687E;
+        width: 100vw;
+    
+        .heading{
+            z-index: 100;
+            position: absolute;
+            font-weight: 900;
+            font-size: 3rem;
+            color: white;
+            transition: all 1s ease;
+        }
+    }
+    .img-container{
+        display: flex;
+        justify-content: flex-start;
+        .img{
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+    .next-button{
+        padding:10px 20px;
+        background-color: black;
+        color: white;
+        margin-bottom: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 1s ease;
+        border: 1px solid black;
+        box-shadow: 1px 1px 0px 0px gray;
+
+        &:hover{
+            background-color: white;
+            color: black;
+        }
+    }
+
+}
+
+
+

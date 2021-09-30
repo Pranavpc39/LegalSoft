@@ -1,0 +1,70 @@
+.per-container{
+    // width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+    margin-left: 30px;
+    margin-right: 35px;
+    
+    .per-inner-container{
+        display: inline-block;
+        background: black;
+        position: relative;
+        backdrop-filter: blur(10px);
+        border: 2px solid transparent;
+        background-clip: border-box;
+        padding: 20px 20px;
+        margin: 20px 0px;
+        box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: white;
+        cursor: pointer;
+
+        .check-box{
+            height: 20px;
+            width: 5px;
+            margin-right: 8px;
+            margin-left: 15px;
+            border: 1px solid white;
+            cursor: pointer;
+            transition-duration: 0.4s;
+
+            &:active{
+                content: "";
+                background: rgba(0,0,0,0.2);
+                transition: all 0.6s ease;
+                transform: rotate(360deg);
+            }
+            &:active::after{
+                padding: 0;
+                margin: 0;
+                opacity: 1;
+                transition: 0s
+            }
+        }
+        .checkicon{
+            margin-right: 8px;
+            cursor: pointer;
+            transition-duration: 0.4s;
+
+            &:active{
+                content: "";
+                background: rgba(0,0,0,0.2);
+                transition: all 0.6s ease;
+                transform: rotate(360deg);
+            }
+            &:active::after{
+                padding: 0;
+                margin: 0;
+                opacity: 1;
+                transition: 0s
+            }
+            
+        }
+    }
+}
