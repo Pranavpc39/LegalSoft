@@ -63,7 +63,7 @@ class Form extends Component {
       }
     
 
-    handleSubmit = (event)=>{
+    handleSubmit = async (event)=>{
         event.preventDefault();
         let email = this.state.email;
         let image = this.state.image;
@@ -128,13 +128,11 @@ class Form extends Component {
                     setTimeout(() => {
                         console.log("Appid ",appId); 
                     }, 1000);
-                    setTimeout(() => {
-                        const {history} = this.props;
-                        history.push({pathname:"/clipboard-page",state:{
-                            permissions:this.props.location.state.permissions,
-                            appId:appId
-                        }});
-                    }, 2000);
+                     const {history} = this.props;
+                     await history.push({pathname:"/clipboard-page",state:{
+                        permissions:this.props.location.state.permissions,
+                        appId:appId
+                    }});
                     
                     
                 }
