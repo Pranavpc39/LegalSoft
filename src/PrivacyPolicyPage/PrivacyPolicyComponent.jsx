@@ -22,7 +22,6 @@ const Privacy_policy_component = () => {
         }).catch(function(error){
             console.log('error occured: ' + error);
         })
-        fetch(`https://legalsoft.netlify.app/privacy/${id.id}`)
     },[userData,id.id]);
     //CcqSfc45pX4k3pVjeT22
     

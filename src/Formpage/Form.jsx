@@ -63,11 +63,11 @@ class Form extends Component {
       }
     
 
-    handleSubmit = async (event)=>{
+    handleSubmit = (event)=>{
         event.preventDefault();
         let email = this.state.email;
         let image = this.state.image;
-        var appId = "";
+   
         console.log(this.state.image);
 
         if(image){
@@ -97,10 +97,10 @@ class Form extends Component {
                                         contact:this.state.contact,
                                         permissions:this.props.location.state.permissions,
                                         logo:url
-                                      }).then(function(docRef) {
+                                      }).then((docRef)=> {
                                             console.log("id ",docRef.id);
                         //   --------------------------------------------------------------------------------------                  
-                                            appId = docRef.id
+                                            this.setState({appId:docRef.id});
                                             db.collection("clients").doc(email)
                                             .get()
                                             .then(function(doc) {
@@ -119,20 +119,20 @@ class Form extends Component {
                                             }).catch(function(error) {
                                                 console.log("Error getting document:", error);
                                             });
+                                            console.log("This Appid ",this.state.appId);
+                                            const {history} = this.props;
+                                            history.push({pathname:"/clipboard-page",state:{
+                                                permissions:this.props.location.state.permissions,
+                                                appId:this.state.appId
+                                            }});
+                                            return docRef;
                                             
                                       });
                                 
                             })
                         }
                     )
-                    setTimeout(() => {
-                        console.log("Appid ",appId); 
-                    }, 1000);
-                     const {history} = this.props;
-                     await history.push({pathname:"/clipboard-page",state:{
-                        permissions:this.props.location.state.permissions,
-                        appId:appId
-                    }});
+                    
                     
                     
                 }
