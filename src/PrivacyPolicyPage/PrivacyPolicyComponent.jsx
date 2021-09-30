@@ -1,33 +1,44 @@
-import React, {useState, useEffect } from 'react'
+
 import { Col, Container, Row, Spinner } from 'reactstrap'
-import {useParams} from 'react-router-dom';
 import db  from '../FirbaseServices/Firebase'
-const Privacy_policy_component = () => {
-    const [userData, setUserData] = useState(null);
-    let id  = useParams();
 
+import React, { Component } from 'react'
 
-    const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
-    const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
+const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
+const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
 
-    useEffect(()=>{
+class PrivacyPolicyComponent extends Component {
+
+    constructor(){
+        super();
+        this.state={
+            userData:null,
+        }
+    }
+
+    componentDidMount(){
+        console.log(this.props);
+        let id = this.props.match.params;
         db.collection('apps').doc(id.id)
         .get()
-        .then(function(doc) {
+        .then((doc)=> {
             if(doc.exists) {
-                setUserData(doc.data());
-                fetch(`https://legalsoft.netlify.app/privacy/${id.id}`)
+                this.setState({userData:doc.data()});
             } else {
                 console.log('No data exist')
+                alert("Wront url");
             }
+            return doc;
         }).catch(function(error){
             console.log('error occured: ' + error);
         })
+    }
+
+    render() {
         
-    },userData);
-    //CcqSfc45pX4k3pVjeT22
-    
-    if(userData === null)
+        const {userData} = this.state;
+
+        if(userData === null)
     return(
         <Container>
             <Spinner type="grow" color="primary" />
@@ -201,6 +212,10 @@ const Privacy_policy_component = () => {
             </Container>
         )
     }
+    }
 }
 
-export default Privacy_policy_component
+
+
+
+export default PrivacyPolicyComponent
