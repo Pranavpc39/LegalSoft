@@ -91,7 +91,6 @@ class Form extends Component {
                                     db.collection("apps").add({
                                         app_name : this.state.app_name,
                                         company_name:this.state.company_name,
-                                        logo:"",
                                         third_party_services:this.state.third_party_services,
                                         users_info:this.state.users_info,
                                         email: this.state.email,
@@ -175,7 +174,7 @@ class Form extends Component {
                                 {
                                     (this.state.image)?
                                     <label style={{height:'100px',width:'100px'}} htmlFor="contained-button-file">
-                                        <img style={{height:'100px',width:'100px'}} className="image" src={this.state.appLogo} />
+                                        <img alt="app-logo" style={{height:'100px',width:'100px'}} className="image" src={this.state.appLogo} />
                                     </label> 
                                     :
                                     <p>App Logo</p>
@@ -261,7 +260,7 @@ class Form extends Component {
                         </div>
                     </div>
                     <div className="right">
-                        <img className="form-image" src={Img5} alt="form-image"></img>
+                        <img className="form-image" src={Img5} alt="form-pic"></img>
                     </div>
                     
                 </div>

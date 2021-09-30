@@ -33,7 +33,7 @@ class ClipboardPage extends Component {
             else{
                 temp+="false";
             }
-            if(i!=this.props.location.state.permissions.length-1) temp+=',';
+            if(i!==this.props.location.state.permissions.length-1) temp+=',';
         }
         temp+=']';
         this.setState({array:temp});

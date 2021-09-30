@@ -5,7 +5,7 @@ import SignUP from './Login/Signup';
 import DataContact from './Dashboard/DataForm';
 import FormPage from './Formpage/Form';
 import PermissionPage from './Permissionpage/PermissionPage';
-import Privacy_policy_component from './PrivacyPolicyPage/PrivacyPolicyComponent';
+import PrivacyPolicyPage from './PrivacyPolicyPage/PrivacyPolicyComponent';
 import ClipboardPage from './ClipboardPage/ClipboardPage';
 import './App.css';
 import { Router , Route, Switch } from 'react-router-dom';
@@ -16,7 +16,10 @@ function App() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(auth, user => {setUser(user)})
-  }, [])
+    if(false){
+      console.log(user);
+    }
+  }, [user])
 
   return (
     <Router history = {history}>
@@ -40,7 +43,7 @@ function App() {
         <PermissionPage/>
       </Route>
       <Route exact path = '/privacy/:id'>
-        <Privacy_policy_component/>
+        <PrivacyPolicyPage/>
       </Route>
       <Route exact path = '/clipboard-page'>
         <ClipboardPage/>

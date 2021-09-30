@@ -5,7 +5,12 @@ import db  from '../FirbaseServices/Firebase'
 const Privacy_policy_component = () => {
     const [userData, setUserData] = useState(null);
     let id  = useParams();
-    const getData = () => {
+
+
+    const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
+    const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
+
+    useEffect(()=>{
         db.collection('apps').doc(id.id)
         .get()
         .then(function(doc) {
@@ -17,14 +22,7 @@ const Privacy_policy_component = () => {
         }).catch(function(error){
             console.log('error occured: ' + error);
         })
-    }
-
-    const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
-    const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
-
-    useEffect(()=>{
-        getData();
-    },[userData]);
+    },[userData,id.id]);
     //CcqSfc45pX4k3pVjeT22
     
     if(userData === null)
@@ -69,8 +67,8 @@ const Privacy_policy_component = () => {
                     </p>
                     <p>
                          {third_part.map((i)=>{
-                            if(userData.third_party_services[third_part.indexOf(i)]===true)
-                                return (<li> {i} </li>);
+                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li> {i} </li>);
+                            
                         })} 
                     </p>
                     <p>
@@ -84,8 +82,7 @@ const Privacy_policy_component = () => {
                     <strong>Personal Information</strong>
                     <p style = {{marginTop: '10px'}}>                    
                          {perms.map((i)=>{
-                            if(userData.permissions[perms.indexOf(i)]===true)
-                                return (<li> {i} </li>);
+                                return (userData.permissions[perms.indexOf(i)]===true) && (<li> {i} </li>);
                         })}
                         </p>
                     <p>Third party services used by us, while providing corresponding services, may collect the information such as “an identifier on your device” which may be recognised as personal information.    
@@ -104,8 +101,7 @@ const Privacy_policy_component = () => {
                     <p>
                         Third party services: <br />
                         {third_part.map((i)=>{
-                            if(userData.third_party_services[third_part.indexOf(i)]===true)
-                                return (<li> {i} </li>);
+                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li> {i} </li>);
                         })} 
                     </p>
                 </Row>

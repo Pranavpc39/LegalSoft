@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Label, Input, Container} from 'reactstrap';
 import './Signup.css';
 import {auth} from '../FirbaseServices/Firebase';
-import {createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import {Link, withRouter} from 'react-router-dom';
 import history from '../history';
 import Navbar from '../Components/Navbar';
@@ -11,7 +11,7 @@ function Signup(props){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
+  useEffect((props) => {
     console.log(props);
     const token = localStorage.getItem('token');
     if(token){
