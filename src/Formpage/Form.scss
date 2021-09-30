@@ -20,14 +20,40 @@
             justify-content: center;
             align-items: center;
             height: 100%;
-            .input-box{
-                height: 45px;
-                width: 300px;
-                border-radius: 10px;
-                padding-left: 10px;
-                font-size: medium;
-                margin-bottom: 10px;
+            .left-col{
+                display: flex;
+                .left-left{
+                    display: flex;
+                    flex-direction: column;
+                    .input-box{
+                        height: 45px;
+                        width: 300px;
+                        border-radius: 10px;
+                        padding-left: 10px;
+                        font-size: medium;
+                        margin-bottom: 10px;
+                    }
+                }
+                .app-logo{
+                    border: 1px solid black;
+                    height: 100px;
+                    width: 120px;
+                    margin-left: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    .logo{
+                        width: 100px;
+                        cursor: pointer;
+                        // display: none;
+                    }
+                    
+                    
+                }
             }
+            
+            
             .inner-container-wrapper{
                 display: flex;
                 justify-content: center;
@@ -70,6 +96,14 @@
                     
                 }
             }
+            .input-box{
+                height: 45px;
+                width: 300px;
+                border-radius: 10px;
+                padding-left: 10px;
+                font-size: medium;
+                margin-bottom: 10px;
+            }
             .next-button{
                 padding: 10px 20px;
                 cursor: pointer;
@@ -104,6 +138,7 @@
         
     }
 }
+
 
 @media only screen and (max-width: 1000px){
     .form-page{

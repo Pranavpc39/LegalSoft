@@ -18,10 +18,10 @@ const Navbar_Home = (props) => {
 
   return (
     <div>
-      <Navbar expand="md">
+      <Navbar  expand="md">
         <NavbarBrand className="nav-links" href="/" style = {{padding: '10px', color: 'black', fontSize: '20px', fontWeight: 'bold'}}>LegalSoft</NavbarBrand>
         <NavbarToggler onClick={toggle}/>
-        <Collapse isOpen={isOpen} navbar>
+        <Collapse  isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem >
               <NavLink className="nav-links" to = '/' style = {{color: 'black', fontSize: '20px'}}>Docs</NavLink>

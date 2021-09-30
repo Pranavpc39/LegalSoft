@@ -22,6 +22,8 @@ class Form extends Component {
             email:"",
             image:null,
             logo:'',
+            appId:'',
+            appLogo:null,
         }
     }
     componentDidMount(){
@@ -45,14 +47,28 @@ class Form extends Component {
         setTimeout(() => {
             this.setState({image:Event.target.files[0]});
             console.log("image ",this.state.image);
-        }, 0);
-        
-        
+        }, 0); 
     }
+    imageHandler = (event)=>{
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          if(reader.readyState === 2){
+            this.setState({appLogo:reader.result,image:event.target.files[0]});
+          }
+        }
+        if(event.target.files[0])
+          reader.readAsDataURL(event.target.files[0])
+        console.log(event)
+        
+      }
+    
+
     handleSubmit = (event)=>{
         event.preventDefault();
         let email = this.state.email;
         let image = this.state.image;
+        var appId = "";
+        console.log(this.state.image);
 
         if(image){
             if(this.state.app_name.length && this.state.company_name.length && this.state.contact.length===10 && this.state.email.length){
@@ -84,9 +100,8 @@ class Form extends Component {
                                         logo:url
                                       }).then(function(docRef) {
                                             console.log("id ",docRef.id);
-                        
                         //   --------------------------------------------------------------------------------------                  
-                        
+                                            appId = docRef.id
                                             db.collection("clients").doc(email)
                                             .get()
                                             .then(function(doc) {
@@ -101,6 +116,7 @@ class Form extends Component {
                                                         apps:arr
                                                     })
                                                 }
+                                                
                                             }).catch(function(error) {
                                                 console.log("Error getting document:", error);
                                             });
@@ -110,7 +126,20 @@ class Form extends Component {
                             })
                         }
                     )
+                    setTimeout(() => {
+                        console.log("Appid ",appId); 
+                    }, 1000);
+                    setTimeout(() => {
+                        const {history} = this.props;
+                        history.push({pathname:"/clipboard-page",state:{
+                            permissions:this.props.location.state.permissions,
+                            appId:appId
+                        }});
+                    }, 2000);
+                    
+                    
                 }
+                
                 else{
                     if(this.state.contact.length!==10){
                         alert("Please fill valid contact number");
@@ -125,10 +154,7 @@ class Form extends Component {
             alert("Upload App Logo");
         }
 
-        const {history} = this.props;
-        history.push({pathname:"/clipboard-page",state:{
-            permissions:this.props.location.state.permissions
-        }});
+        
         
     }
 
@@ -138,9 +164,27 @@ class Form extends Component {
                 <Navbar/>
                 <div data-aos="fade-right" className="form-container">
                     <div className="left">
-                        <input onChange={this.handleChange} name="app_name" placeholder="App Name" className="input-box"/>
-                        <input onChange={this.handleChange} name="company_name" placeholder="Company Name" className="input-box"/>
-                        <input className="next-button" type="file" onChange={this.handleFileChange}/>
+                        <div className="left-col">
+                            <div className="left-left">
+                                <input onChange={this.handleChange} name="app_name" placeholder="App Name" className="input-box"/>
+                                <input onChange={this.handleChange} name="company_name" placeholder="Company Name" className="input-box"/>
+                            </div>
+                            
+                            <div className="app-logo">
+                                <input accept="image/*" className="logo" id="contained-button-file" type="file" onChange={this.imageHandler}/>
+                                {
+                                    (this.state.image)?
+                                    <label style={{height:'100px',width:'100px'}} htmlFor="contained-button-file">
+                                        <img style={{height:'100px',width:'100px'}} className="image" src={this.state.appLogo} />
+                                    </label> 
+                                    :
+                                    <p>App Logo</p>
+                                }
+                                
+                            </div>
+                        </div>
+                        
+                        
                         
                         <Divider style={{color:'black',width:'100%',margin:'10px 0px'}}/>
                         <div className="inner-container-wrapper">
@@ -209,8 +253,8 @@ class Form extends Component {
                             </div>
                         </div>
                         <Divider style={{color:'black',width:'100%',margin:'10px 0px'}}/>
-                        <input onChange={this.handleChange} name="email" placeholder="Email" className="input-box"/>
-                        <input onChange={this.handleChange} name="contact" placeholder="Contact" className="input-box"/>
+                        <input onChange={this.handleChange} name="email" placeholder="Support Email" className="input-box"/>
+                        <input onChange={this.handleChange} name="contact" placeholder="Support Contact" className="input-box"/>
 
                         <div onClick={this.handleSubmit} className="next-button">
                             Next

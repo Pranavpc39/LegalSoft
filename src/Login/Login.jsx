@@ -4,6 +4,8 @@ import {Link,withRouter} from 'react-router-dom';
 import {auth} from '../FirbaseServices/Firebase';
 import {signInWithEmailAndPassword} from '@firebase/auth';
 import history from '../history';
+import Navbar from '../Components/Navbar';
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,6 +28,7 @@ function Login() {
     }
     return (
         <Container>
+          <Navbar signup={true}/>
           <div className="form">
             <Label style={{marginBottom: '15px', color: 'black'}} for="Email">Email</Label>
             <Input className = 'input' style = {{ marginBottom: '15px', color: 'black'}} type="email" name="email" id="exampleEmail" placeholder="Enter the company email" onChange = {(e)=>{setEmail(e.target.value)}} />

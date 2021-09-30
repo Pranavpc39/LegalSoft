@@ -24,7 +24,7 @@ const Privacy_policy_component = () => {
 
     useEffect(()=>{
         getData();
-    });
+    },[userData]);
     //CcqSfc45pX4k3pVjeT22
     
     if(userData === null)
@@ -46,9 +46,9 @@ const Privacy_policy_component = () => {
             <Container style = {{marginTop: '30px', marginBottom: '30px'}}>
                 <Row>
                     <Col className = 'col-5'>
-                            <p>
-                                ********* Logo ********
-                            </p>
+                            <div style={{border:'1px solid black',height:'180px',width:'180px',display:'flex',justifyContent:'center',alignItems:'center'}}>
+                                <img style={{height:'150px',width:'150px'}} src={userData.logo} alt="app-logo"/>
+                            </div>
                     </Col>
                     <Col>
                         <Row>

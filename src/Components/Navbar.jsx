@@ -67,10 +67,26 @@ class navbar extends Component {
                                 <div className="docs">
                                   Docs
                                 </div>
-                              </Link>         
-                              <div onClick={this.logout} className="logout">
+                              </Link>  
+                              {
+                                (this.props.login)? 
+                                <Link style={{textDecoration:'none',color:'inherit',marginRight:'40px'}} to="/login">
+                                  <div className="docs">
+                                    Log in
+                                  </div>
+                                </Link>  
+                                :(this.props.signup)?
+                                  <Link style={{textDecoration:'none',color:'inherit',marginRight:'40px'}} to="/signup">
+                                    <div className="docs">
+                                      Signup
+                                    </div>
+                                  </Link>
+                                :<div onClick={this.logout} className="logout">
                                   Logout
-                              </div>
+                                </div>
+                                
+                              }      
+                              
                             </div>
                         </div>
                     </Toolbar>

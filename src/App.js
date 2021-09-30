@@ -39,7 +39,7 @@ function App() {
       <Route exact path = '/permission-page'>
         <PermissionPage/>
       </Route>
-      <Route exact path = '/privacy/CcqSfc45pX4k3pVjeT22'>
+      <Route exact path = '/privacy/:id'>
         <Privacy_policy_component/>
       </Route>
       <Route exact path = '/clipboard-page'>
