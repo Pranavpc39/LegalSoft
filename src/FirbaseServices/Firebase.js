@@ -2,6 +2,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBmVQiiZZ9Z4FGcSI2C668E-zAIfGHRBHQ",
@@ -15,8 +16,9 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = app.firestore();
 const auth = firebase.auth();
+const storage = firebase.storage();
 
-export {auth};
+export {auth,firebase,storage};
 export default db;
 
 

@@ -4,6 +4,7 @@ import Img5 from '../Assets/img5.svg';
 import { Divider } from '@mui/material';
 import CheckBox from '../Components/Checkbox'
 import  db  from '../FirbaseServices/Firebase';
+import {firebase,storage} from '../FirbaseServices/Firebase';
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import { withRouter } from 'react-router';
@@ -19,6 +20,8 @@ class Form extends Component {
             company_name:"",
             contact:"",
             email:"",
+            image:null,
+            logo:'',
         }
     }
     componentDidMount(){
@@ -38,31 +41,91 @@ class Form extends Component {
     handleChange = (event)=>{
         this.setState({[event.target.name]:event.target.value});
     }
+    handleFileChange = (Event)=>{
+        setTimeout(() => {
+            this.setState({image:Event.target.files[0]});
+            console.log("image ",this.state.image);
+        }, 0);
+        
+        
+    }
     handleSubmit = (event)=>{
         event.preventDefault();
+        let email = this.state.email;
+        let image = this.state.image;
 
-        if(this.state.app_name.length && this.state.company_name.length && this.state.contact.length===10 && this.state.email.length){
-            db.collection("form-info").doc().set({
-                app_name : this.state.app_name,
-                company_name:this.state.company_name,
-                third_party_services:this.state.third_party_services,
-                users_info:this.state.users_info,
-                email: this.state.email,
-                contact:this.state.contact,
-                permissions:this.props.location.state.permissions
-              }).then(function() {
-                    alert("Added");
-              });
+        if(image){
+            if(this.state.app_name.length && this.state.company_name.length && this.state.contact.length===10 && this.state.email.length){
+            const uploadTask = storage.ref(`images/${image.name}`)
+                    .put(image);
+                    uploadTask.on(
+                        "state_changed",
+                        snapshot =>{},
+                        error =>{
+                            console.log(error);
+                        },
+                        ()=>{
+                            storage
+                            .ref("images")
+                            .child(image.name)
+                            .getDownloadURL()
+                            .then(url =>{
+                                console.log(url);
+                                
+                                    db.collection("apps").add({
+                                        app_name : this.state.app_name,
+                                        company_name:this.state.company_name,
+                                        logo:"",
+                                        third_party_services:this.state.third_party_services,
+                                        users_info:this.state.users_info,
+                                        email: this.state.email,
+                                        contact:this.state.contact,
+                                        permissions:this.props.location.state.permissions,
+                                        logo:url
+                                      }).then(function(docRef) {
+                                            console.log("id ",docRef.id);
+                        
+                        //   --------------------------------------------------------------------------------------                  
+                        
+                                            db.collection("clients").doc(email)
+                                            .get()
+                                            .then(function(doc) {
+                                                if (doc.exists) {
+                                                    db.collection("clients").doc(email).update({
+                                                        apps:firebase.default.firestore.FieldValue.arrayUnion(docRef.id)
+                                                    })
+                                                } else {
+                                                    let arr = [];
+                                                    arr.push(docRef.id);
+                                                    db.collection("clients").doc(email).set({
+                                                        apps:arr
+                                                    })
+                                                }
+                                            }).catch(function(error) {
+                                                console.log("Error getting document:", error);
+                                            });
+                                            alert("Added");
+                                      });
+                                
+                            })
+                        }
+                    )
+                }
+                else{
+                    if(this.state.contact.length!==10){
+                        alert("Please fill valid contact number");
+                    }
+                    else{
+                        alert("Please fill out all fields");
+                    }
+                    
+                }
         }
         else{
-            if(this.state.contact.length!==10){
-                alert("Please fill valid contact number");
-            }
-            else{
-                alert("Please fill out all fields");
-            }
-            
+            alert("Upload App Logo");
         }
+
+        
     }
 
     render() {
@@ -73,6 +136,8 @@ class Form extends Component {
                     <div className="left">
                         <input onChange={this.handleChange} name="app_name" placeholder="App Name" className="input-box"/>
                         <input onChange={this.handleChange} name="company_name" placeholder="Company Name" className="input-box"/>
+                        <input className="next-button" type="file" onChange={this.handleFileChange}/>
+                        
                         <Divider style={{color:'black',width:'100%',margin:'10px 0px'}}/>
                         <div className="inner-container-wrapper">
                             <div className="form-inner-small-container">
