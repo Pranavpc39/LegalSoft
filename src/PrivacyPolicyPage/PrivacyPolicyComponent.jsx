@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react'
+import React, {useState, useEffect,useCallback } from 'react'
 import { Col, Container, Row, Spinner } from 'reactstrap'
 import {useParams} from 'react-router-dom';
 import db  from '../FirbaseServices/Firebase'
@@ -10,21 +10,29 @@ const Privacy_policy_component = () => {
     const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
     const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
 
+    const getData = useCallback(
+        () => {
+            console.log(id.id);
+            db.collection('apps').doc(id.id)
+            .get()
+            .then(function(doc) {
+                if(doc.exists) {
+                    setUserData(doc.data());
+                } else {
+                    console.log('No data exist')
+                }
+            }).catch(function(error){
+                console.log('error occured: ' + error);
+            })
+            },
+        [id.id],
+    )
+
     useEffect(()=>{
-        console.log(id.id);
-        db.collection('apps').doc(id.id)
-        .get()
-        .then(function(doc) {
-            if(doc.exists) {
-                setUserData(doc.data());
-            } else {
-                console.log('No data exist')
-            }
-        }).catch(function(error){
-            console.log('error occured: ' + error);
-        })
+
+        getData();
         
-    },[]);
+    },[getData]);
     //CcqSfc45pX4k3pVjeT22
     
     if(userData === null)
