@@ -24,15 +24,12 @@ const Navbar_Home = (props) => {
         <Collapse  isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem >
-              <NavLink className="nav-links" to = '/' style = {{color: 'black', fontSize: '20px'}}>Docs</NavLink>
+              <NavLink className="nav-links" href="https://pub.dev/packages/legalsoft_package" style = {{color: 'black', fontSize: '20px'}}>Docs</NavLink>
             </NavItem>
             <NavItem >
               <Link to = '/login' style = {{textDecorationLine: 'none'}}>
               <NavLink className="nav-links"  style = {{color: 'black', fontSize: '20px'}}>Login</NavLink>
               </Link>
-            </NavItem>
-            <NavItem >
-              <NavLink className="nav-links" to="/" style = {{color: 'black', fontSize: '20px'}}>About Us</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

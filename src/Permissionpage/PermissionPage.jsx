@@ -107,9 +107,7 @@ class PermissionPage extends Component {
                     <img className="img" src={Img5} alt="2"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" record audio "</i></h1>
                 </div>           
                 <div className="card-container" data-aos="fade-left">
                     <Card handleClick = {this.handleClick} item={permissions[0]} itr={0}/>
@@ -129,9 +127,7 @@ class PermissionPage extends Component {
                     <img className="img" src={Img2} alt="4"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" precise location (GPS and network-based) "</i></h1>
                 </div>                
                 <div data-aos="fade-left">
                     <Card handleClick = {this.handleClick} item={permissions[1]} itr={1}/>
@@ -149,9 +145,7 @@ class PermissionPage extends Component {
                     <img className="img" src={Img3} alt="3"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" take pictures and videos "</i></h1>
                 </div>
 
                 <div data-aos="fade-left">
@@ -169,9 +163,8 @@ class PermissionPage extends Component {
                     <img className="img" src={Img4} alt="4"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" read the contents of your USB storage
+modify or delete the contents of your USB storage "</i></h1>
                 </div>                
                 <div data-aos="fade-left">
                     <Card handleClick = {this.handleClick} item={permissions[3]} itr={3}/>
@@ -192,9 +185,8 @@ class PermissionPage extends Component {
                     <img className="img" src={Img6} alt="4"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" directly call phone numbers
+read phone status and identity "</i></h1>
                 </div>                
                 <div data-aos="fade-left">
                     <Card handleClick = {this.handleClick} item={permissions[4]} itr={4}/>
@@ -214,9 +206,8 @@ class PermissionPage extends Component {
                     <img className="img" src={Img7} alt="4"/>
                 </div>
                 <div data-aos="fade-right" style={{margin:'20px'}}>
-                    <h1 style={{fontSize:'30px'}}><i>" They are also a gateway to a massive amount of our personal data. ... 
-                        Both Apple's iOS and Google's Android systems have evolved to contain very robust data permission regimes and,
-                        in general, apps ask your permission to access your data because they need it for one function or another "</i></h1>
+                    <h1 style={{fontSize:'30px'}}><i>" find accounts on the device
+read your contacts "</i></h1>
                 </div>                
                 <div data-aos="fade-left">
                     <Card handleClick = {this.handleClick} item={permissions[5]} itr={5}/>

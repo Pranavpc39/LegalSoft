@@ -23,7 +23,9 @@ class ClipboardPage extends Component {
         alert("text copied");
     }
 
+
     componentDidMount(){
+        console.log(localStorage.getItem('data').object);
         AOS.init({duration:2000});
         let temp = "[";
         for(let i=0;i<this.props.location.state.permissions.length;i++){

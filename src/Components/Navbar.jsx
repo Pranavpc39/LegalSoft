@@ -63,7 +63,7 @@ class navbar extends Component {
                             </div>
                     
                             <div className="right">
-                              <Link style={{textDecoration:'none',color:'inherit',marginRight:'40px'}} to="/">
+                              <Link href="https://pub.dev/packages/legalsoft_package" style={{textDecoration:'none',color:'inherit',marginRight:'40px'}} to="/">
                                 <div className="docs">
                                   Docs
                                 </div>

@@ -101,6 +101,7 @@ class Form extends Component {
                                             console.log("id ",docRef.id);
                         //   --------------------------------------------------------------------------------------                  
                                             this.setState({appId:docRef.id});
+                                            
                                             db.collection("clients").doc(email)
                                             .get()
                                             .then(function(doc) {
