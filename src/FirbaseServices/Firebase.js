@@ -5,12 +5,13 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBmVQiiZZ9Z4FGcSI2C668E-zAIfGHRBHQ",
-  authDomain: "legalsoft-site.firebaseapp.com",
-  projectId: "legalsoft-site",
-  storageBucket: "legalsoft-site.appspot.com",
-  messagingSenderId: "488429846713",
-  appId: "1:488429846713:web:0f5827b98b8c7458a81b68"
+  apiKey: "AIzaSyDOC4Kka9VJEtrI6GrDS_SgelV_2V_L4x4",
+  authDomain: "legalsoft-1a014.firebaseapp.com",
+  projectId: "legalsoft-1a014",
+  storageBucket: "legalsoft-1a014.appspot.com",
+  messagingSenderId: "4195971513",
+  appId: "1:4195971513:web:a04a26290e81135afe0668",
+  measurementId: "G-H3MS6T9CL6"
 };
 
 const app = firebase.initializeApp(firebaseConfig);

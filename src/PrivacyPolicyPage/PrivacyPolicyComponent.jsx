@@ -1,44 +1,33 @@
-
+import React, {useState, useEffect } from 'react'
 import { Col, Container, Row, Spinner } from 'reactstrap'
+import {useParams} from 'react-router-dom';
 import db  from '../FirbaseServices/Firebase'
+const Privacy_policy_component = () => {
+    const [userData, setUserData] = useState(null);
+    let id  = useParams();
 
-import React, { Component } from 'react'
 
-const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
-const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
+    const third_part = ['AdMob', 'Facebook Ads', 'Firebase', 'Digital Screen', 'AWS', 'GCP', 'Azure'];
+    const perms = ['Microphone', 'Camera', 'Location', 'Storage', 'Call', 'Contacts'];
 
-class PrivacyPolicyComponent extends Component {
-
-    constructor(){
-        super();
-        this.state={
-            userData:null,
-        }
-    }
-
-    componentDidMount(){
-        console.log(this.props);
-        let id = this.props.match.params;
+    useEffect(()=>{
+        console.log(id.id);
         db.collection('apps').doc(id.id)
         .get()
-        .then((doc)=> {
+        .then(function(doc) {
             if(doc.exists) {
-                this.setState({userData:doc.data()});
+                setUserData(doc.data());
             } else {
                 console.log('No data exist')
-                alert("Wront url");
             }
-            return doc;
         }).catch(function(error){
             console.log('error occured: ' + error);
         })
-    }
-
-    render() {
         
-        const {userData} = this.state;
-
-        if(userData === null)
+    },[]);
+    //CcqSfc45pX4k3pVjeT22
+    
+    if(userData === null)
     return(
         <Container>
             <Spinner type="grow" color="primary" />
@@ -79,8 +68,8 @@ class PrivacyPolicyComponent extends Component {
      We, for monetization & analysis purpose use third party services-
                     </p>
                     <p>
-                         {third_part.map((i)=>{
-                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li> {i} </li>);
+                         {third_part.map((i,itr)=>{
+                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li key={{itr}}> {i} </li>);
                             
                         })} 
                     </p>
@@ -94,8 +83,8 @@ class PrivacyPolicyComponent extends Component {
                 <Row style = {{marginTop: '10px'}}>
                     <strong>Personal Information</strong>
                     <p style = {{marginTop: '10px'}}>                    
-                         {perms.map((i)=>{
-                                return (userData.permissions[perms.indexOf(i)]===true) && (<li> {i} </li>);
+                         {perms.map((i,itr)=>{
+                                return (userData.permissions[perms.indexOf(i)]===true) && (<li key={{itr}}> {i} </li>);
                         })}
                         </p>
                     <p>Third party services used by us, while providing corresponding services, may collect the information such as “an identifier on your device” which may be recognised as personal information.    
@@ -113,8 +102,8 @@ class PrivacyPolicyComponent extends Component {
                     </p>
                     <p>
                         Third party services: <br />
-                        {third_part.map((i)=>{
-                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li> {i} </li>);
+                        {third_part.map((i,itr)=>{
+                                return (userData.third_party_services[third_part.indexOf(i)]===true) && (<li key={{itr}}> {i} </li>);
                         })} 
                     </p>
                 </Row>
@@ -212,10 +201,6 @@ class PrivacyPolicyComponent extends Component {
             </Container>
         )
     }
-    }
 }
 
-
-
-
-export default PrivacyPolicyComponent
+export default Privacy_policy_component

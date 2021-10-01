@@ -42,7 +42,9 @@ function App() {
       <Route exact path = '/permission-page'>
         <PermissionPage/>
       </Route>
-      <Route exact path={'/privacy/:id'} component={PrivacyPolicyPage}/>
+      <Route exact path = '/privacy/:id'>
+        <PrivacyPolicyPage/>
+      </Route>
       <Route exact path = '/clipboard-page'>
         <ClipboardPage/>
       </Route>
